@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../core/constants/style_constants.dart';
-import '../../home/screens/home_screen.dart';
+import '../../../core/constants/palette.dart';
+
+import '../../dashbord/screens/home_screen.dart';
 import '../controllers/auth_controller.dart';
 
 Padding UnLockButtonWidget(BuildContext context) {
@@ -18,9 +19,8 @@ Padding UnLockButtonWidget(BuildContext context) {
         }
       },
       style: ElevatedButton.styleFrom(
-        fixedSize: Size(MediaQuery.of(context).size.width - 70, 50),
-        primary: Palette.primaryColor,
-      ),
+          fixedSize: Size(MediaQuery.of(context).size.width - 70, 50),
+          backgroundColor: Palette.primaryColor),
       child: Obx(
         () => Text(
             authController.isAuthenticating

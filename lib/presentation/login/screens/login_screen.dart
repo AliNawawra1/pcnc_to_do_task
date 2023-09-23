@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../../../core/constants/keys/assets_keys.dart';
-import '../../../core/constants/style_constants.dart';
+import '../../../core/constants/palette.dart';
 import '../widgets/unlock_button_widget.dart';
 
 class LoginScreen extends StatelessWidget {

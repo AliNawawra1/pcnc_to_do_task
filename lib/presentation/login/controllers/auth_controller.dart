@@ -30,21 +30,14 @@ class AuthController extends GetxController {
       final isSupported = await auth.isDeviceSupported();
       _supportState.value =
           isSupported ? SupportState.supported : SupportState.unsupported;
-      print('The Device isSupported: $isSupported');
-    } catch (e) {
-      print(
-          'Error in _checkBiometricsSupport: $e'); // Add this line for debugging
-      print(e);
-    }
+    } catch (e) {}
   }
 
   Future<void> _checkBiometrics() async {
     try {
       final canCheckBiometrics = await auth.canCheckBiometrics;
       _canCheckBiometrics = canCheckBiometrics.obs;
-      print('The Device can check Biometrics $_canCheckBiometrics');
     } catch (e) {
-      print(e);
       _canCheckBiometrics = false.obs;
     }
   }
@@ -52,7 +45,6 @@ class AuthController extends GetxController {
   Future<void> authenticateWithBiometrics() async {
     bool authenticated = false;
     try {
-      print('authenticateWithBiometrics is working Now........');
       _isAuthenticating.value = true;
       _authorized.value = 'Authenticating';
 

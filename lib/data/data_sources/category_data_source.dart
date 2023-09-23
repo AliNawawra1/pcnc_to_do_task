@@ -2,7 +2,6 @@ import 'package:pcnc_todo_task/data/database/database_provider.dart';
 import 'package:pcnc_todo_task/domain/entities/category.dart';
 import 'package:pcnc_todo_task/domain/interactors/category_interactor.dart';
 
-
 class CategoryDataSource implements CategoryInteractor {
   final DatabaseProvider database;
 
@@ -37,5 +36,15 @@ class CategoryDataSource implements CategoryInteractor {
       where: 'id = ?',
       whereArgs: [categoryId],
     );
+  }
+
+  @override
+  Future<Category> getCategoryById(int categoryId) async {
+    final List<Map<String, dynamic>> categoryMaps = await database.db.query(
+      'categories',
+      where: 'id = ?',
+      whereArgs: [categoryId],
+    );
+    return Category.fromMap(categoryMaps.first);
   }
 }

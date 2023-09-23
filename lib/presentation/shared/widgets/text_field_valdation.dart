@@ -13,9 +13,9 @@ class TextFieldValidatorWidget extends StatelessWidget {
 
   String? _validateCategoryName(String? value) {
     if (value == null || value.trim().isEmpty) {
-      return 'Category name is required';
+      return 'The name is required';
     } else if (_containsDisallowedPatterns(value)) {
-      return 'Category name contains invalid characters';
+      return 'The name contains invalid characters';
     }
     return null; // Input is valid
   }

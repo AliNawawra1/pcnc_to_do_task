@@ -4,9 +4,9 @@ class Task {
   final String? description;
   final DateTime? dueDate;
   final DateTime creationDate;
-  final bool isCompleted;
-  final bool isPrivate;
-  final int categoryId;
+  bool isCompleted;
+  bool isPrivate;
+  int categoryId;
 
   Task({
     this.id,
@@ -40,7 +40,7 @@ class Task {
       title: map['title'],
       description: map['description'],
       dueDate: map['dueDate'] != null ? DateTime.parse(map['dueDate']) : null,
-        creationDate: DateTime.parse(map['creationDate']),
+      creationDate: DateTime.parse(map['creationDate']),
       isCompleted: map['isCompleted'] == 1,
       isPrivate: map['isPrivate'] == 1,
       categoryId: map['categoryId'],

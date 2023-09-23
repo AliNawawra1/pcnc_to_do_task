@@ -26,4 +26,9 @@ class CategoryInteractorImpl implements CategoryInteractor {
   Future<void> deleteCategory(int categoryId) async {
     await categoryDataSource.deleteCategory(categoryId);
   }
+
+  @override
+  Future<Category> getCategoryById(int categoryId) async {
+    return await categoryDataSource.getCategoryById(categoryId);
+  }
 }
