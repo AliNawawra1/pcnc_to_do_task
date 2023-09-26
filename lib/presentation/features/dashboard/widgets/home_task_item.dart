@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 
 import '../../../../core/constants/palette.dart';
 import '../../../../domain/entities/task.dart';
-import '../../task/screens/task_edit_screen.dart';
+import '../../task/screens/task_modification_screen.dart';
 import '../controllers/home_task_list_view_controller.dart';
 
 class HomeScreenTaskItem extends StatelessWidget {
@@ -31,7 +31,7 @@ class HomeScreenTaskItem extends StatelessWidget {
         child: InkWell(
           onTap: () {
             if (category != null) {
-              Get.to(() => EditTaskScreen(task: task, category: category));
+              Get.to(() => TaskModificationScreen(task: task, category: category));
             } else {
               Get.dialog(buildAlertDialog());
             }

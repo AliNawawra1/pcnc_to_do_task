@@ -15,7 +15,7 @@ class HomeScreen extends StatelessWidget {
       if (homeController.isLoading.value) {
         return const Center(child: CircularProgressIndicator());
       } else if (!homeController.hasData.value) {
-        return const EmptyStateScreen();
+        return const EmptyDataScreen();
       } else {
         return RefreshIndicator(
             onRefresh: homeController.refreshTasks,

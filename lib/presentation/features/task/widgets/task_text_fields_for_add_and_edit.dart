@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import '../../../../shared/widgets/text_field_valdation.dart';
 import '../controllers/base_task_controller.dart';
 
-class TaskTextFields extends StatelessWidget {
+class TaskTextFieldsForAddAndEdit extends StatelessWidget {
   final BaseTaskController taskController;
 
-  const TaskTextFields({
+  const TaskTextFieldsForAddAndEdit({
     super.key,
     required this.taskController,
   });

@@ -1,25 +1,24 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:pcnc_todo_task/domain/entities/category.dart';
 import '../../../../domain/entities/task.dart';
+import '../../../../shared/widgets/custom_elevated_button.dart';
 import '../../category/screens/category_choosing_dialog.dart';
 import '../controllers/task_editing_controller.dart';
-import '../widgets/edit_task_widgets/close_edit_button.dart';
+import '../widgets/edit_task_widgets/close_modification_button.dart';
 import '../widgets/edit_task_widgets/mark_complete_button.dart';
 import '../widgets/edit_task_widgets/task_category_edit.dart';
 import '../widgets/edit_task_widgets/task_operations.dart';
-import '../widgets/edit_task_widgets/task_time_edit.dart';
-import '../widgets/edit_task_widgets/title_description_edit_widget.dart';
-import '/core/constants/palette.dart';
+import '../widgets/edit_task_widgets/task_date_time_edit.dart';
+import '../widgets/edit_task_widgets/task_text_fields_for_modification.dart';
 
-class EditTaskScreen extends StatelessWidget {
+class TaskModificationScreen extends StatelessWidget {
   final Rx<Task> task;
   final Rx<Category> category;
 
-  const EditTaskScreen({super.key, required this.task, required this.category});
+  const TaskModificationScreen(
+      {super.key, required this.task, required this.category});
 
   @override
   Widget build(BuildContext context) {
@@ -35,31 +34,31 @@ class EditTaskScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const CloseEditionButton(),
-                MarkAsCompleteButton(
+                const CloseModificationButton(),
+                MarkAsCompletedButton(
                     taskEditController: taskEditController, task: task.value)
               ],
             ),
-            TaskTextFieldsForEdit(
+            TaskTextFieldsForModification(
                 task: task, taskEditingController: taskEditController),
             Obx(
-              () => TaskTimeForEdit(
-                infoText: taskEditController.taskToEdit.value.dueDate != null
-                    ? DateFormat('hh:mm a')
-                        .format(taskEditController.taskToEdit.value.dueDate!)
-                    : '',
-                onTap: () async {
-                  await taskEditController.updateDueDate(context);
-                },
-              ),
+              () => TaskDateTimeForEditRow(
+                  dateTimeText: taskEditController.taskToEdit.value.dueDate != null
+                      ? DateFormat('hh:mm a')
+                          .format(taskEditController.taskToEdit.value.dueDate!)
+                      : '',
+                  onTap: () async {
+                    await taskEditController.updateDueDate(context);
+                  }),
             ),
-            EditTaskCategoryWidget(
+            TaskCategoryEditRow(
                 category: category,
                 onTap: () async {
-                  var selectedCategory = await Get.dialog(CategoryChoosingDialog(
-                      elements: await categoryController.categoryInteractorImpl
-                          .getCategories()));
-
+                  var selectedCategory = await Get.dialog(
+                      CategoryChoosingDialog(
+                          elements: await categoryController
+                              .categoryInteractorImpl
+                              .getCategories()));
                   taskEditController.setTaskCategory(selectedCategory);
                   taskEditController.updateCategory();
                 }),
@@ -83,19 +82,10 @@ class EditTaskScreen extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 35),
-            EditTaskButton(context),
+            CustomElevatedButton(text: 'Edit Task', onPressed: Get.back),
           ],
         ),
       ),
     );
-  }
-
-  ElevatedButton EditTaskButton(BuildContext context) {
-    return ElevatedButton(
-        onPressed: () {},
-        style: ElevatedButton.styleFrom(
-            fixedSize: Size(MediaQuery.of(context).size.width - 70, 50),
-            backgroundColor: Palette.primaryColor),
-        child: const Text('Edit Task'));
   }
 }

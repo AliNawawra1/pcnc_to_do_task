@@ -6,8 +6,8 @@ import '../../../../core/constants/keys/assets_keys.dart';
 import '../widgets/home_app_bar.dart';
 import '../widgets/home_screen_floating_button.dart';
 
-class EmptyStateScreen extends StatelessWidget {
-  const EmptyStateScreen({super.key});
+class EmptyDataScreen extends StatelessWidget {
+  const EmptyDataScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +18,8 @@ class EmptyStateScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SvgPicture.asset(
-              AssetsKeys.getAssetPath(
-                  AssetsKeys.EMPTY_HOME_IMAGE, AssetsKeys.IMAGES_SUB),
-            ),
+            SvgPicture.asset(AssetsKeys.getAssetPath(
+                AssetsKeys.EMPTY_HOME_IMAGE, AssetsKeys.IMAGES_SUB)),
             const SizedBox(height: 50),
             const Text(AppConstants.EMPTY_SCREEN_HINT_1,
                 style: TextStyle(fontSize: 20)),

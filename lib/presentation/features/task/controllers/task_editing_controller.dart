@@ -5,7 +5,7 @@ import 'package:share_plus/share_plus.dart';
 
 import '../../../../domain/entities/task.dart';
 import '../../../../domain/interactors_impl/task_interactor_impl.dart';
-import '../../../../shared/widgets/custom_row_buttons.dart';
+import '../../../../shared/widgets/custom_row_widget.dart';
 import '../../dashboard/controllers/home_screen_controller.dart';
 import '../../dashboard/screens/home_screen.dart';
 import 'date_time_controller.dart';
@@ -43,10 +43,7 @@ class TaskEditingController extends BaseTaskController {
       isPrivate: taskToEdit.value.isPrivate,
       categoryId: taskToEdit.value.categoryId,
     );
-    await taskInteractorImpl.updateTask(updatedTask);
-    homeController.loadTasks();
-    taskToEdit.value = updatedTask;
-    Get.back();
+    updateAndSaveTask(updatedTask);
   }
 
   Future<void> updateDueDate(BuildContext context) async {
@@ -64,9 +61,7 @@ class TaskEditingController extends BaseTaskController {
       isPrivate: taskToEdit.value.isPrivate,
       categoryId: taskToEdit.value.categoryId,
     );
-    await taskInteractorImpl.updateTask(updatedTask);
-    homeController.loadTasks();
-    taskToEdit.value = updatedTask;
+    updateAndSaveTask(updatedTask);
   }
 
   Future<void> updateCategory() async {
@@ -88,10 +83,7 @@ class TaskEditingController extends BaseTaskController {
       isPrivate: taskToEdit.value.isPrivate,
       categoryId: categoryId!,
     );
-
-    await taskInteractorImpl.updateTask(updatedTask);
-    homeController.loadTasks();
-    Get.back();
+    updateAndSaveTask(updatedTask);
   }
 
   void toggleTaskCompletion(Task task) async {
@@ -112,6 +104,13 @@ class TaskEditingController extends BaseTaskController {
     Get.back();
   }
 
+  Future<void> updateAndSaveTask(Task updatedTask) async {
+    await taskInteractorImpl.updateTask(updatedTask);
+    homeController.loadTasks();
+    taskToEdit.value = updatedTask;
+    Get.back();
+  }
+
   void shareTask() {
     Share.share('Task Title: ${taskToEdit.value.title}',
         subject: 'Task Details');
@@ -127,14 +126,13 @@ class TaskEditingController extends BaseTaskController {
           children: [
             const Divider(thickness: 3, height: 30, color: Colors.white),
             Center(
-              child: Text(
-                  "Are you sure you want to delete this task? \n\n Task title: ${taskToEdit.value.title}",
-                  textAlign: TextAlign.center),
-            ),
+                child: Text(
+                    "Are you sure you want to delete this task? \n\n Task title: ${taskToEdit.value.title}",
+                    textAlign: TextAlign.center)),
           ],
         ),
         actions: [
-          CustomRowButtons(
+          CustomRowWidget(
             buttonText: 'Delete',
             onTap: () {
               onTaskDelete();

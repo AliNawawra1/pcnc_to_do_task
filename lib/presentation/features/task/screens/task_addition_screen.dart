@@ -4,22 +4,21 @@ import 'package:get/get.dart';
 import '../controllers/task_addition_controller.dart';
 import '../widgets/category_selection_button.dart';
 import '../widgets/date_time_selection_button.dart';
-import '../widgets/task_text_fields.dart';
+import '../widgets/task_text_fields_for_add_and_edit.dart';
 import '/core/constants/palette.dart';
 
-class AddTaskBottomSheet extends StatelessWidget {
+class TaskAdditionScreen extends StatelessWidget {
   final TaskAdditionController taskAdditionController =
       Get.put(TaskAdditionController());
 
-  AddTaskBottomSheet({super.key});
+  TaskAdditionScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-        color: Palette.bgSecondaryColor,
-        borderRadius: BorderRadius.all(Radius.circular(16)),
-      ),
+          color: Palette.bgSecondaryColor,
+          borderRadius: BorderRadius.all(Radius.circular(16))),
       child: Padding(
         padding: const EdgeInsets.all(12.0),
         child: SingleChildScrollView(
@@ -27,19 +26,18 @@ class AddTaskBottomSheet extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const Text(
-                'Add Task',
-                style: TextStyle(fontSize: 20, color: Colors.white),
-              ),
+              const Text('Add Task',
+                  style: TextStyle(fontSize: 20, color: Colors.white)),
               const SizedBox(height: 20),
-              TaskTextFields(taskController: taskAdditionController),
+              TaskTextFieldsForAddAndEdit(
+                  taskController: taskAdditionController),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      DateTimeButton(
+                      AddDateTimeButton(
                           taskAdditionController: taskAdditionController),
                       const SizedBox(width: 10),
                       CategorySelectionButton(
@@ -47,11 +45,10 @@ class AddTaskBottomSheet extends StatelessWidget {
                     ],
                   ),
                   IconButton(
-                      icon: const Icon(Icons.send_outlined,
-                          color: Palette.primaryColor, size: 24),
-                      onPressed: () {
-                        taskAdditionController.onAdd();
-                      }),
+                    icon: const Icon(Icons.send_outlined,
+                        color: Palette.primaryColor, size: 24),
+                    onPressed: () => taskAdditionController.onAdd(),
+                  ),
                 ],
               ),
             ],

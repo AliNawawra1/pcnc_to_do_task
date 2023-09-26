@@ -4,11 +4,11 @@ import '../../../../../core/constants/palette.dart';
 import '../../../../../domain/entities/task.dart';
 import '../../controllers/task_editing_controller.dart';
 
-class MarkAsCompleteButton extends StatelessWidget {
+class MarkAsCompletedButton extends StatelessWidget {
   final TaskEditingController taskEditController;
   final Task task;
 
-  const MarkAsCompleteButton(
+  const MarkAsCompletedButton(
       {super.key, required this.taskEditController, required this.task});
 
   @override
@@ -18,14 +18,9 @@ class MarkAsCompleteButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
           color: Palette.editScreenRowButtonsColor),
       child: TextButton(
-        onPressed: () {
-          taskEditController.toggleTaskCompletion(task);
-        },
-        child: const Text(
-          "Mark as Complete",
-          style: TextStyle(color: Colors.white),
-        ),
-      ),
+          onPressed: () => taskEditController.toggleTaskCompletion(task),
+          child: const Text("Mark as Complete",
+              style: TextStyle(color: Colors.white))),
     );
   }
 }

@@ -3,9 +3,8 @@ import 'package:get/get.dart';
 
 import '../../../../../core/constants/palette.dart';
 
-
-class CloseEditionButton extends StatelessWidget {
-  const CloseEditionButton({super.key});
+class CloseModificationButton extends StatelessWidget {
+  const CloseModificationButton({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,11 +13,8 @@ class CloseEditionButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
           color: Palette.editScreenRowButtonsColor),
       child: IconButton(
-        icon: const Icon(Icons.close, color: Colors.white),
-        onPressed: () {
-          Get.back(); // Navigate back
-        },
-      ),
+          icon: const Icon(Icons.close, color: Colors.white),
+          onPressed: Get.back),
     );
   }
 }

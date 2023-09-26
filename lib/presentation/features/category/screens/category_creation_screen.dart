@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:pcnc_todo_task/shared/widgets/custom_row_buttons.dart';
+import 'package:pcnc_todo_task/shared/widgets/custom_row_widget.dart';
 import '../../../../shared/widgets/text_field_valdation.dart';
 import '../controllers/category_creation_screen_controller.dart';
 
@@ -62,7 +62,7 @@ class CategoryCreationScreen extends StatelessWidget {
                       onSelect: categoryAddScreenController.onSelectColor),
                 ],
               ),
-              CustomRowButtons(
+              CustomRowWidget(
                   onTap: categoryAddScreenController.onAdd,
                   buttonText: 'Create Category'),
             ],

@@ -3,13 +3,13 @@ import 'package:get/get.dart';
 
 import '../../../../../domain/entities/task.dart';
 import '../../controllers/task_editing_controller.dart';
-import '../../screens/task_fields_editing_screen.dart';
+import '../../screens/text_fields_modification_screen.dart';
 
-class TaskTextFieldsForEdit extends StatelessWidget {
+class TaskTextFieldsForModification extends StatelessWidget {
   final Rx<Task> task;
   final TaskEditingController taskEditingController;
 
-  const TaskTextFieldsForEdit(
+  const TaskTextFieldsForModification(
       {super.key, required this.task, required this.taskEditingController});
 
   @override
@@ -25,9 +25,7 @@ class TaskTextFieldsForEdit extends StatelessWidget {
                   style: const TextStyle(
                       fontSize: 20, fontWeight: FontWeight.bold)),
               IconButton(
-                icon: const Icon(Icons.edit),
-                onPressed: editIconOnTap,
-              ),
+                  icon: const Icon(Icons.edit), onPressed: editIconOnTap),
             ],
           ),
           const SizedBox(height: 10),
@@ -39,7 +37,7 @@ class TaskTextFieldsForEdit extends StatelessWidget {
   }
 
   void editIconOnTap() async {
-    var newTask = await Get.bottomSheet<Task?>(TaskTextFieldsModificationScreen(
+    var newTask = await Get.bottomSheet<Task?>(TextFieldsModificationScreen(
         task: task, taskEditingController: taskEditingController));
     if (newTask != null) {
       taskEditingController.taskTitleController.text = newTask.title;

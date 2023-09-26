@@ -3,11 +3,11 @@ import 'package:get/get.dart';
 
 import '../../core/constants/palette.dart';
 
-class CustomRowButtons extends StatelessWidget {
+class CustomRowWidget extends StatelessWidget {
   final VoidCallback onTap;
   final String buttonText;
 
-  const CustomRowButtons(
+  const CustomRowWidget(
       {super.key, required this.onTap, required this.buttonText});
 
   @override
@@ -23,10 +23,9 @@ class CustomRowButtons extends StatelessWidget {
                   color: Colors.transparent,
                   borderRadius: BorderRadius.circular(4)),
               child: const Center(
-                child: Text('Cancel',
-                    style:
-                        TextStyle(color: Palette.primaryColor, fontSize: 16)),
-              ),
+                  child: Text('Cancel',
+                      style: TextStyle(
+                          color: Palette.primaryColor, fontSize: 16))),
             ),
           ),
         ),
@@ -40,10 +39,9 @@ class CustomRowButtons extends StatelessWidget {
                   color: Palette.primaryColor,
                   borderRadius: BorderRadius.circular(8)),
               child: Center(
-                  child: Text(
-                buttonText,
-                style: const TextStyle(color: Colors.white, fontSize: 16),
-              )),
+                  child: Text(buttonText,
+                      style:
+                          const TextStyle(color: Colors.white, fontSize: 16))),
             ),
           ),
         ),

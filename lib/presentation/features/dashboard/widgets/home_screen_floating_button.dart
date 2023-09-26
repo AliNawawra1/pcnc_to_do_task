@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../core/constants/palette.dart';
-import '../../task/screens/add_task_screen.dart';
+import '../../task/screens/task_addition_screen.dart';
 
 class HomeScreenFloatingActionButton extends StatelessWidget {
   const HomeScreenFloatingActionButton({super.key});
@@ -15,9 +15,7 @@ class HomeScreenFloatingActionButton extends StatelessWidget {
       child: FloatingActionButton(
         backgroundColor: Palette.primaryColor,
         child: const Icon(Icons.add, color: Colors.white, size: 32),
-        onPressed: () {
-          Get.bottomSheet(AddTaskBottomSheet());
-        },
+        onPressed: () => Get.bottomSheet(TaskAdditionScreen()),
       ),
     );
   }
