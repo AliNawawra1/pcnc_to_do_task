@@ -2,7 +2,7 @@ class Task {
   int? id;
   final String title;
   final String? description;
-  final DateTime? dueDate;
+  DateTime? dueDate;
   final DateTime creationDate;
   bool isCompleted;
   bool isPrivate;

@@ -40,6 +40,9 @@ dependencies:
   flutter_native_splash: ^2.3.2
   flutter_svg: ^2.0.7
   local_auth: ^2.1.7
+  flutter_windowmanager: ^0.2.0
+  share_plus: ^7.1.0
+  table_calendar: ^3.0.9
 
 flutter_native_splash:
   color: "#121212"
