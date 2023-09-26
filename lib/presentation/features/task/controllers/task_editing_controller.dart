@@ -6,8 +6,8 @@ import 'package:share_plus/share_plus.dart';
 import '../../../../domain/entities/task.dart';
 import '../../../../domain/interactors_impl/task_interactor_impl.dart';
 import '../../../../shared/widgets/custom_row_buttons.dart';
-import '../../dashbord/controllers/home_screen_controller.dart';
-import '../../dashbord/screens/home_screen.dart';
+import '../../dashboard/controllers/home_screen_controller.dart';
+import '../../dashboard/screens/home_screen.dart';
 import 'date_time_controller.dart';
 
 class TaskEditingController extends BaseTaskController {

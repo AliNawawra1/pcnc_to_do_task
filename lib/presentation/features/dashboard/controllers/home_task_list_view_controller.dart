@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import '../../../../domain/entities/task.dart';
 import '/domain/entities/category.dart';
 import '/domain/interactors_impl/category_interactor_impl.dart';
-import '/presentation/features/dashbord/controllers/home_screen_controller.dart';
+import '/presentation/features/dashboard/controllers/home_screen_controller.dart';
 
 class HomeScreenTaskListViewController extends GetxController {
   HomeScreenTaskListViewController(this.homeController);

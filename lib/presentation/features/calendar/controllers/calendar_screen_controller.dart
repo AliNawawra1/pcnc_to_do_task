@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
 import '../../../../domain/entities/task.dart';
-import '../../dashbord/controllers/home_screen_controller.dart';
+import '../../dashboard/controllers/home_screen_controller.dart';
 
 class CalendarScreenController extends GetxController {
   final HomeController homeController;

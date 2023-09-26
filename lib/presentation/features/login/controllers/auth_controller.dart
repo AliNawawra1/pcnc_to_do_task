@@ -16,8 +16,6 @@ class AuthController extends GetxController {
 
   bool get isAuthenticating => _isAuthenticating.value;
 
-  //methods
-
   @override
   void onInit() {
     super.onInit();
@@ -26,13 +24,9 @@ class AuthController extends GetxController {
   }
 
   Future<void> _checkBiometricsSupport() async {
-    try {
-      final isSupported = await auth.isDeviceSupported();
-      _supportState.value =
-          isSupported ? SupportState.supported : SupportState.unsupported;
-    } catch (e) {
-      //
-    }
+    final isSupported = await auth.isDeviceSupported();
+    _supportState.value =
+        isSupported ? SupportState.supported : SupportState.unsupported;
   }
 
   Future<void> _checkBiometrics() async {

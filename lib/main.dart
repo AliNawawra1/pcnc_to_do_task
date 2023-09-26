@@ -3,7 +3,7 @@ import 'package:pcnc_todo_task/data/database/database_provider.dart';
 import 'package:pcnc_todo_task/presentation/features/login/screens/login_screen.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized(); // Ensure Flutter is initialized
+  WidgetsFlutterBinding.ensureInitialized();
   await DatabaseProvider.instance.init();
   runApp(const LoginScreen());
 }
