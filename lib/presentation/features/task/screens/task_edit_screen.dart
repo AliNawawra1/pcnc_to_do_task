@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:pcnc_todo_task/domain/entities/category.dart';
 import '../../../../domain/entities/task.dart';
-import '../../category/screens/category_choose_screen.dart';
+import '../../category/screens/category_choosing_dialog.dart';
 import '../controllers/task_editing_controller.dart';
 import '../widgets/edit_task_widgets/close_edit_button.dart';
 import '../widgets/edit_task_widgets/mark_complete_button.dart';
@@ -56,7 +56,7 @@ class EditTaskScreen extends StatelessWidget {
             EditTaskCategoryWidget(
                 category: category,
                 onTap: () async {
-                  var selectedCategory = await Get.dialog(CategoriesAlert(
+                  var selectedCategory = await Get.dialog(CategoryChoosingDialog(
                       elements: await categoryController.categoryInteractorImpl
                           .getCategories()));
 

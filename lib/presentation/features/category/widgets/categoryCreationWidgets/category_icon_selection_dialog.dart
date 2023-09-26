@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '/core/constants/icons_and_colors_list.dart';
 
-class IconSelectionDialog extends StatelessWidget {
-  const IconSelectionDialog({super.key});
+class CategoryIconSelectionDialog extends StatelessWidget {
+  const CategoryIconSelectionDialog({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,23 +20,13 @@ class IconSelectionDialog extends StatelessWidget {
             itemBuilder: (context, index) {
               final icon = iconList[index];
               return GestureDetector(
-                child: Icon(icon),
-                onTap: () {
-                  // selectedIcon = icon;
-                  Get.back(result: icon);
-                },
-              );
+                  child: Icon(icon), onTap: () => Get.back(result: icon));
             },
           ),
         ),
       ),
       actions: [
-        TextButton(
-          onPressed: () {
-            Get.back();
-          },
-          child: const Text('Cancel'),
-        ),
+        TextButton(onPressed: () => Get.back, child: const Text('Cancel')),
       ],
     );
   }

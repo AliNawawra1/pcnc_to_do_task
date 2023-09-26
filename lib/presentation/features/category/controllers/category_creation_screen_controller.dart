@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:pcnc_todo_task/domain/entities/category.dart';
 import 'package:pcnc_todo_task/domain/interactors_impl/category_interactor_impl.dart';
 
-class CategoryCreationScreenController extends GetxController {
-  CategoryCreationScreenController()
+class CategoryCreationController extends GetxController {
+  CategoryCreationController()
       : categoryInteractorImpl = CategoryInteractorImpl();
 
   final TextEditingController categoryNameController = TextEditingController();

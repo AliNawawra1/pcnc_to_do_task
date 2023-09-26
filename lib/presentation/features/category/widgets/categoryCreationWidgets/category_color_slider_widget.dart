@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import '/core/constants/icons_and_colors_list.dart';
 
-class ColorsSlider extends StatelessWidget {
+class CategoryColorSlider extends StatelessWidget {
   final Color? active;
   final ValueChanged<Color>? onSelect;
 
-  const ColorsSlider({super.key, this.active, this.onSelect});
+  const CategoryColorSlider({super.key, this.active, this.onSelect});
 
   @override
   Widget build(BuildContext context) {

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../screens/category_creation_screen.dart';
 
-class NewCategoryButton extends StatelessWidget {
-  const NewCategoryButton({super.key});
+class NewCategoryItemButton extends StatelessWidget {
+  const NewCategoryItemButton({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,13 +17,11 @@ class NewCategoryButton extends StatelessWidget {
         children: [
           Container(
               decoration: const BoxDecoration(
-                color: Color(0xFF80FFD1),
-                borderRadius: BorderRadius.all(Radius.circular(4)),
-              ),
+                  color: Color(0xFF80FFD1),
+                  borderRadius: BorderRadius.all(Radius.circular(4))),
               child: const Icon(Icons.add, size: 50)),
           const SizedBox(height: 16),
-          const Text('New',
-              style: TextStyle(fontSize: 14, color: Colors.white)),
+          const Text('New', style: TextStyle(fontSize: 14, color: Colors.white))
         ],
       ),
     );

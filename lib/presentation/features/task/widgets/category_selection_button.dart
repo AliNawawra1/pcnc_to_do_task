@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
-import '../../category/screens/category_choose_screen.dart';
+import '../../category/screens/category_choosing_dialog.dart';
 import '../controllers/base_task_controller.dart';
 import '/core/constants/keys/assets_keys.dart';
 
@@ -18,7 +18,7 @@ class CategorySelectionButton extends StatelessWidget {
         AssetsKeys.getAssetPath(AssetsKeys.TAG_ICON, AssetsKeys.ICONS_SUB),
       ),
       onPressed: () async {
-        var selectedCategory = await Get.dialog(CategoriesAlert(
+        var selectedCategory = await Get.dialog(CategoryChoosingDialog(
             elements: await categoryController.categoryInteractorImpl
                 .getCategories()));
 
