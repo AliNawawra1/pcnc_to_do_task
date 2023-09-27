@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:pcnc_todo_task/shared/widgets/custom_row_widget.dart';
-import '../../../../shared/widgets/text_field_valdation.dart';
+
+import '../../../../core/shared/widgets/custom_row_widget.dart';
+import '../../../../core/shared/widgets/text_field_valdation.dart';
 import '../controllers/category_creation_screen_controller.dart';
 
 import '../widgets/categoryCreationWidgets/category_color_slider_widget.dart';

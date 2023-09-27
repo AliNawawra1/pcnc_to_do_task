@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../core/constants/palette.dart';
+import '../../constants/palette.dart';
+
 
 class CustomRowWidget extends StatelessWidget {
   final VoidCallback onTap;

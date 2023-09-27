@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:pcnc_todo_task/domain/entities/task.dart';
 
 import '../../../../core/constants/palette.dart';
-import '../../../../shared/widgets/custom_row_widget.dart';
+import '../../../../core/shared/widgets/custom_row_widget.dart';
 import '../controllers/task_editing_controller.dart';
 import '../widgets/task_text_fields_for_add_and_edit.dart';
 

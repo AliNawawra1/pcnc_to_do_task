@@ -1,4 +1,4 @@
-class Task {
+class Task implements Copyable<Task> {
   int? id;
   final String title;
   final String? description;
@@ -46,4 +46,49 @@ class Task {
       categoryId: map['categoryId'],
     );
   }
+
+  @override
+  Task copy() => Task(
+        id: id,
+        title: title,
+        description: description,
+        dueDate: dueDate,
+        creationDate: creationDate,
+        isCompleted: isCompleted,
+        isPrivate: isPrivate,
+        categoryId: categoryId,
+      );
+
+  @override
+  Task copyWith({
+    int? id,
+    String? title,
+    String? description,
+    DateTime? dueDate,
+    DateTime? creationDate,
+    bool? isCompleted,
+    bool? isPrivate,
+    int? categoryId,
+  }) {
+    return Task(
+      id: id ?? this.id,
+      title: title ?? this.title,
+      description: description ?? this.description,
+      dueDate: dueDate ?? this.dueDate,
+      creationDate: creationDate ?? this.creationDate,
+      isCompleted: isCompleted ?? this.isCompleted,
+      isPrivate: isPrivate ?? this.isPrivate,
+      categoryId: categoryId ?? this.categoryId,
+    );
+  }
+}
+
+abstract interface class CopyableWithOnly<R> implements _CopyWith<R> {}
+
+abstract interface class Copyable<R> extends _CopyWith<R> {
+  R copy();
+}
+
+abstract interface class _CopyWith<R> {
+  R copyWith();
 }

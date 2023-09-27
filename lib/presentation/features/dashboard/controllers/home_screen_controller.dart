@@ -45,7 +45,5 @@ class HomeController extends GetxController {
     }
   }
 
-  void openCalendar() {
-    Get.to(() => CalendarScreen());
-  }
+  void openCalendar() => Get.to(() => CalendarScreen());
 }

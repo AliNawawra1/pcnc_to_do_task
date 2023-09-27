@@ -5,9 +5,10 @@ import 'package:share_plus/share_plus.dart';
 
 import '../../../../domain/entities/task.dart';
 import '../../../../domain/interactors_impl/task_interactor_impl.dart';
-import '../../../../shared/widgets/custom_row_widget.dart';
+
 import '../../dashboard/controllers/home_screen_controller.dart';
 import '../../dashboard/screens/home_screen.dart';
+import '../widgets/edit_task_widgets/delete_task_dialog.dart';
 import 'date_time_controller.dart';
 
 class TaskEditingController extends BaseTaskController {
@@ -33,16 +34,8 @@ class TaskEditingController extends BaseTaskController {
     if (!(formKey.currentState?.validate() ?? false)) return;
     final title = taskTitleController.text.trim();
     final description = taskDescriptionController.text;
-    final updatedTask = Task(
-      id: taskToEdit.value.id,
-      title: title,
-      description: description,
-      dueDate: taskToEdit.value.dueDate,
-      creationDate: taskToEdit.value.creationDate,
-      isCompleted: taskToEdit.value.isCompleted,
-      isPrivate: taskToEdit.value.isPrivate,
-      categoryId: taskToEdit.value.categoryId,
-    );
+    final updatedTask =
+        taskToEdit.value.copyWith(title: title, description: description);
     updateAndSaveTask(updatedTask);
   }
 
@@ -51,16 +44,7 @@ class TaskEditingController extends BaseTaskController {
     await dateTimeController.selectDate(context);
     final newDueDate = dateTimeController.getCombinedDateTime();
 
-    final updatedTask = Task(
-      id: taskToEdit.value.id,
-      title: taskToEdit.value.title,
-      description: taskToEdit.value.description,
-      dueDate: newDueDate,
-      creationDate: taskToEdit.value.creationDate,
-      isCompleted: taskToEdit.value.isCompleted,
-      isPrivate: taskToEdit.value.isPrivate,
-      categoryId: taskToEdit.value.categoryId,
-    );
+    final updatedTask = taskToEdit.value.copyWith(dueDate: newDueDate);
     updateAndSaveTask(updatedTask);
   }
 
@@ -73,17 +57,15 @@ class TaskEditingController extends BaseTaskController {
           onConfirm: Get.back);
     }
     final categoryId = selectedCategory.value!.id;
-    final updatedTask = Task(
-      id: taskToEdit.value.id,
-      title: taskToEdit.value.title,
-      description: taskToEdit.value.description,
-      dueDate: taskToEdit.value.dueDate,
-      creationDate: taskToEdit.value.creationDate,
-      isCompleted: taskToEdit.value.isCompleted,
-      isPrivate: taskToEdit.value.isPrivate,
-      categoryId: categoryId!,
-    );
+    final updatedTask = taskToEdit.value.copyWith(categoryId: categoryId);
     updateAndSaveTask(updatedTask);
+  }
+
+  Future<void> updateAndSaveTask(Task updatedTask) async {
+    await taskInteractorImpl.updateTask(updatedTask);
+    homeController.loadTasks();
+    taskToEdit.value = updatedTask;
+    Get.back();
   }
 
   void toggleTaskCompletion(Task task) async {
@@ -95,19 +77,11 @@ class TaskEditingController extends BaseTaskController {
           colorText: Colors.white);
       return;
     }
-
     task.isCompleted = !task.isCompleted;
     await homeController.taskInteractorImpl.updateTask(task);
 
     int index = homeController.tasks.indexOf(task);
     if (index != -1) homeController.tasks[index] = task;
-    Get.back();
-  }
-
-  Future<void> updateAndSaveTask(Task updatedTask) async {
-    await taskInteractorImpl.updateTask(updatedTask);
-    homeController.loadTasks();
-    taskToEdit.value = updatedTask;
     Get.back();
   }
 
@@ -117,40 +91,12 @@ class TaskEditingController extends BaseTaskController {
   }
 
   void showDeleteDialog() {
-    Get.dialog(
-      AlertDialog(
-        title: const Center(child: Text("Delete Task")),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Divider(thickness: 3, height: 30, color: Colors.white),
-            Center(
-                child: Text(
-                    "Are you sure you want to delete this task? \n\n Task title: ${taskToEdit.value.title}",
-                    textAlign: TextAlign.center)),
-          ],
-        ),
-        actions: [
-          CustomRowWidget(
-            buttonText: 'Delete',
-            onTap: () {
-              onTaskDelete();
-              Get.back();
-            },
-          ),
-        ],
-      ),
-    );
+    Get.dialog(DeleteTaskDialog(
+        taskTitle: taskToEdit.value.title, onDeleteTap: onTaskDelete));
   }
 
   void onTaskDelete() async {
-    Task task = taskToEdit.value;
-
-    await taskInteractorImpl.deleteTask(task.id!);
-
-    Future.delayed(const Duration(seconds: 1), () {
-      Get.offAll(() => const HomeScreen());
-    });
+    await taskInteractorImpl.deleteTask(taskToEdit.value.id!);
+    Get.offAll(() => const HomeScreen());
   }
 }
